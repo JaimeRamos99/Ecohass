@@ -18,7 +18,10 @@ import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 
 /**
  *
@@ -73,6 +76,7 @@ public class EdicionDeArbol extends javax.swing.JFrame {
         foto = new javax.swing.JCheckBox();
         total = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
+        salu = new javax.swing.JCheckBox();
         j = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -147,6 +151,10 @@ public class EdicionDeArbol extends javax.swing.JFrame {
         jLabel1.setOpaque(true);
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, -1, -1));
 
+        salu.setFont(new java.awt.Font("Microsoft Tai Le", 1, 18)); // NOI18N
+        salu.setText("salud");
+        getContentPane().add(salu, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 330, -1, -1));
+
         j.setFont(new java.awt.Font("Microsoft Tai Le", 1, 18)); // NOI18N
         j.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/otrofondo.jpeg"))); // NOI18N
         getContentPane().add(j, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 510));
@@ -174,9 +182,10 @@ public class EdicionDeArbol extends javax.swing.JFrame {
 
     private void jButton10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseClicked
         Object[] zonas = {"zona 1", "zona 2", "zona 3", "zona 4", "zona 5"};
+        
         Connection c = conexion();
         try {
-            if (!(zona.isSelected() || altura.isSelected() || ancho.isSelected() || edad.isSelected() || nivel.isSelected() || siembra.isSelected() || foto.isSelected() || total.isSelected())) {
+            if (!(zona.isSelected() || altura.isSelected() || ancho.isSelected() || edad.isSelected() || nivel.isSelected() || siembra.isSelected() || foto.isSelected() || total.isSelected() || salu.isSelected())) {
                 JOptionPane.showMessageDialog(null, "No se seleccionó ningún campo", "Alerta", JOptionPane.WARNING_MESSAGE);
             } else {
                 if (zona.isSelected()) {
@@ -207,10 +216,10 @@ public class EdicionDeArbol extends javax.swing.JFrame {
                 if (ancho.isSelected()) {
                     String g2 = JOptionPane.showInputDialog(null, "Digite el nuevo ancho");
                     if (!(g2 == null)) {
-                    ps = c.prepareStatement("UPDATE aguacates SET ancho = ? WHERE id=" + ids);
-                    ps.setString(1, g2);
-                    int e = ps.executeUpdate();
-                    JOptionPane.showMessageDialog(null, "Se ha completado la actualización.");
+                        ps = c.prepareStatement("UPDATE aguacates SET ancho = ? WHERE id=" + ids);
+                        ps.setString(1, g2);
+                        int e = ps.executeUpdate();
+                        JOptionPane.showMessageDialog(null, "Se ha completado la actualización.");
                     } else {
                         JOptionPane.showMessageDialog(null, "no se llevó a cabo la actualización");
                     }
@@ -219,10 +228,10 @@ public class EdicionDeArbol extends javax.swing.JFrame {
                 if (edad.isSelected()) {
                     String g3 = JOptionPane.showInputDialog(null, "Digite la nueva edad");
                     if (!(g3 == null)) {
-                    ps = c.prepareStatement("UPDATE aguacates SET edad = ? WHERE id=" + ids);
-                    ps.setString(1, g3);
-                    int e = ps.executeUpdate();
-                    JOptionPane.showMessageDialog(null, "Se ha completado la actualización.");
+                        ps = c.prepareStatement("UPDATE aguacates SET edad = ? WHERE id=" + ids);
+                        ps.setString(1, g3);
+                        int e = ps.executeUpdate();
+                        JOptionPane.showMessageDialog(null, "Se ha completado la actualización.");
                     } else {
                         JOptionPane.showMessageDialog(null, "no se llevó a cabo la actualización");
                     }
@@ -231,10 +240,10 @@ public class EdicionDeArbol extends javax.swing.JFrame {
                 if (nivel.isSelected()) {
                     String g4 = JOptionPane.showInputDialog(null, "Digite el nivel de crecimiento");
                     if (!(g4 == null)) {
-                    ps = c.prepareStatement("UPDATE aguacates SET niveldecrecimiento = ? WHERE id=" + ids);
-                    ps.setString(1, g4);
-                    int e = ps.executeUpdate();
-                    JOptionPane.showMessageDialog(null, "Se ha completado la actualización.");
+                        ps = c.prepareStatement("UPDATE aguacates SET niveldecrecimiento = ? WHERE id=" + ids);
+                        ps.setString(1, g4);
+                        int e = ps.executeUpdate();
+                        JOptionPane.showMessageDialog(null, "Se ha completado la actualización.");
                     } else {
                         JOptionPane.showMessageDialog(null, "no se llevó a cabo la actualización");
                     }
@@ -243,10 +252,10 @@ public class EdicionDeArbol extends javax.swing.JFrame {
                 if (siembra.isSelected()) {
                     String g5 = JOptionPane.showInputDialog(null, "Digite la fecha de siembra");
                     if (!(g5 == null)) {
-                    ps = c.prepareStatement("UPDATE aguacates SET fechasiembra = ? WHERE id=" + ids);
-                    ps.setString(1, g5);
-                    int e = ps.executeUpdate();
-                    JOptionPane.showMessageDialog(null, "Se ha completado la actualización.");
+                        ps = c.prepareStatement("UPDATE aguacates SET fechasiembra = ? WHERE id=" + ids);
+                        ps.setString(1, g5);
+                        int e = ps.executeUpdate();
+                        JOptionPane.showMessageDialog(null, "Se ha completado la actualización.");
                     } else {
                         JOptionPane.showMessageDialog(null, "no se llevó a cabo la actualización");
                     }
@@ -255,10 +264,10 @@ public class EdicionDeArbol extends javax.swing.JFrame {
                 if (foto.isSelected()) {
                     String g6 = JOptionPane.showInputDialog(null, "Digite la fecha de la foto actual");
                     if (!(g6 == null)) {
-                    ps = c.prepareStatement("UPDATE aguacates SET fechafoto = ? WHERE id=" + ids);
-                    ps.setString(1, g6);
-                    int e = ps.executeUpdate();
-                    JOptionPane.showMessageDialog(null, "Se ha completado la actualización.");
+                        ps = c.prepareStatement("UPDATE aguacates SET fechafoto = ? WHERE id=" + ids);
+                        ps.setString(1, g6);
+                        int e = ps.executeUpdate();
+                        JOptionPane.showMessageDialog(null, "Se ha completado la actualización.");
                     } else {
                         JOptionPane.showMessageDialog(null, "no se llevó a cabo la actualización");
                     }
@@ -267,16 +276,31 @@ public class EdicionDeArbol extends javax.swing.JFrame {
                 if (total.isSelected()) {
                     String g7 = JOptionPane.showInputDialog(null, "Digite el total producido");
                     if (!(g7 == null)) {
-                    ps = c.prepareStatement("UPDATE aguacates SET totalproducido = ? WHERE id=" + ids);
-                    ps.setString(1, g7);
-                    int e = ps.executeUpdate();
-                    JOptionPane.showMessageDialog(null, "Se ha completado la actualización.");
+                        ps = c.prepareStatement("UPDATE aguacates SET totalproducido = ? WHERE id=" + ids);
+                        ps.setString(1, g7);
+                        int e = ps.executeUpdate();
+                        JOptionPane.showMessageDialog(null, "Se ha completado la actualización.");
                     } else {
                         JOptionPane.showMessageDialog(null, "no se llevó a cabo la actualización");
                     }
                     total.setSelected(false);
                 }
-                
+                if (salu.isSelected()) {
+                    final JPanel panel = new JPanel();
+                    final JRadioButton button1 = new JRadioButton("1");
+                    final JRadioButton button2 = new JRadioButton("2");
+                    final JRadioButton button3 = new JRadioButton("3");
+                    final JRadioButton button4 = new JRadioButton("4");
+                    final JRadioButton button5 = new JRadioButton("5");
+                    panel.add(new JLabel("Digite el nivel de salud del arbol, donde 5 es excelente y 1 es muy malo."));
+                    panel.add(button1);
+                    panel.add(button2);
+                    panel.add(button3);
+                    panel.add(button4);
+                    panel.add(button5);
+                    JOptionPane.showMessageDialog(null, panel);
+                    salu.setSelected(false);
+                }
             }
 
         } catch (SQLException | NullPointerException ex) {
@@ -328,6 +352,7 @@ public class EdicionDeArbol extends javax.swing.JFrame {
     private javax.swing.JButton jButton10;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JCheckBox nivel;
+    private javax.swing.JCheckBox salu;
     private javax.swing.JCheckBox siembra;
     private javax.swing.JCheckBox total;
     private javax.swing.JCheckBox zona;

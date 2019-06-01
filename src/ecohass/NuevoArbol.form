@@ -278,11 +278,11 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="6">
             <StringItem index="0" value="------------------"/>
-            <StringItem index="1" value="ZONA 1"/>
-            <StringItem index="2" value="ZONA 2"/>
-            <StringItem index="3" value="ZONA 3"/>
-            <StringItem index="4" value="ZONA 4"/>
-            <StringItem index="5" value="ZONA 5"/>
+            <StringItem index="1" value="zona 1"/>
+            <StringItem index="2" value="zona 2"/>
+            <StringItem index="3" value="zona 3"/>
+            <StringItem index="4" value="zona 4"/>
+            <StringItem index="5" value="zona 5"/>
           </StringArray>
         </Property>
       </Properties>

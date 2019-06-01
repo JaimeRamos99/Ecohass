@@ -9,7 +9,9 @@ import static ecohass.NuevoArbol.ps;
 import static ecohass.NuevoArbol.ps2;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -58,7 +60,7 @@ public class Perfil extends javax.swing.JFrame {
     static PreparedStatement pp;
     static ByteArrayOutputStream ouput = new ByteArrayOutputStream();
     static String lazona;
-
+    Image anuel;
     public static Connection conexion() {
         Connection c = null;
         try {
@@ -69,7 +71,14 @@ public class Perfil extends javax.swing.JFrame {
         }
         return c;
     }
-
+    private Image  ZoomImage(int w, int h, Image img){
+        BufferedImage buf=new BufferedImage(w,h,BufferedImage.TYPE_INT_RGB);
+        Graphics2D grf =buf.createGraphics();
+        grf.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        grf.drawImage(img,0,0,w,h,null);
+        grf.dispose();
+        return buf;
+    }
     public static String lafecha(String f) {
         String mes = "";
 
@@ -147,7 +156,6 @@ public class Perfil extends javax.swing.JFrame {
         rr = ps.executeQuery();
         while (rr.next()) {
             try {
-                uno.setText(uno.getText() + " " + rr.getString("id"));
                 lazona = rr.getString("zona");
                 dos.setText(dos.getText() + " " + lazona);
                 tres.setText(tres.getText() + " " + rr.getString("niveldecrecimiento"));
@@ -157,10 +165,12 @@ public class Perfil extends javax.swing.JFrame {
                 siete.setText(siete.getText() + " " + rr.getString("fechasiembra"));
                 ocho.setText(ocho.getText() + " " + rr.getString("fechafoto"));
                 nueve.setText(nueve.getText() + " " + rr.getString("ancho"));
+                diez.setText(diez.getText()+ " "+rr.getString("salud"));
                 Blob blob = rr.getBlob("fotoactual");
                 if (blob != null) {
                     byte[] data = blob.getBytes(1, (int) blob.length());
                     BufferedImage img = ImageIO.read(new ByteArrayInputStream(data));
+                     anuel=(Image)img;
                     try {
                         ImageIcon icono = new ImageIcon(img);
                         //JOptionPane.showMessageDialog(null, "Imagenes", "Imagen", JOptionPane.INFORMATION_MESSAGE, icono);
@@ -235,7 +245,6 @@ public class Perfil extends javax.swing.JFrame {
 
         titulo = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        foto = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         lista1 = new javax.swing.JList<>();
         jLabel2 = new javax.swing.JLabel();
@@ -251,7 +260,6 @@ public class Perfil extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         area = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
-        uno = new javax.swing.JLabel();
         dos = new javax.swing.JLabel();
         tres = new javax.swing.JLabel();
         cuatro = new javax.swing.JLabel();
@@ -262,6 +270,11 @@ public class Perfil extends javax.swing.JFrame {
         nueve = new javax.swing.JLabel();
         editar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        zoomin = new javax.swing.JButton();
+        zoomout = new javax.swing.JButton();
+        foto2 = new javax.swing.JScrollPane();
+        foto = new javax.swing.JLabel();
+        diez = new javax.swing.JLabel();
         j = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -276,7 +289,7 @@ public class Perfil extends javax.swing.JFrame {
 
         titulo.setFont(new java.awt.Font("Microsoft Tai Le", 1, 36)); // NOI18N
         titulo.setText("PERFIL");
-        getContentPane().add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 31, 500, -1));
+        getContentPane().add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 500, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/back.png"))); // NOI18N
         jButton1.setText("Atrás");
@@ -285,11 +298,7 @@ public class Perfil extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 610, 103, 51));
-
-        foto.setText("FOTO");
-        foto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        getContentPane().add(foto, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 10, 184, 281));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 630, 103, 51));
 
         lista1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -345,46 +354,42 @@ public class Perfil extends javax.swing.JFrame {
         area.setEnabled(false);
         jScrollPane5.setViewportView(area);
 
-        getContentPane().add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 121, 305, 171));
+        getContentPane().add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 120, 305, 171));
 
         jLabel6.setText("Observaciones adicionales");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 89, -1, -1));
-
-        uno.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        uno.setText("Arbol número:");
-        getContentPane().add(uno, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 30, 170, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 100, -1, -1));
 
         dos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         dos.setText("Zona:");
-        getContentPane().add(dos, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 60, 180, -1));
+        getContentPane().add(dos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 180, -1));
 
         tres.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tres.setText("Nivel de crecimiento:");
-        getContentPane().add(tres, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 90, 240, -1));
+        getContentPane().add(tres, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 240, -1));
 
         cuatro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cuatro.setText("Total producido:");
-        getContentPane().add(cuatro, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 130, 270, -1));
+        getContentPane().add(cuatro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 270, -1));
 
         cinco.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cinco.setText("Altura:");
-        getContentPane().add(cinco, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 160, 110, -1));
+        getContentPane().add(cinco, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 130, -1));
 
         seis.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         seis.setText("Edad:");
-        getContentPane().add(seis, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 200, 230, -1));
+        getContentPane().add(seis, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 230, -1));
 
-        siete.setFont(new java.awt.Font("Microsoft Tai Le", 0, 14)); // NOI18N
+        siete.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         siete.setText("Fecha en que se sembró:");
-        getContentPane().add(siete, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 230, 320, -1));
+        getContentPane().add(siete, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 320, -1));
 
         ocho.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         ocho.setText("Fecha de la foto:");
-        getContentPane().add(ocho, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 260, 310, -1));
+        getContentPane().add(ocho, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 310, -1));
 
         nueve.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nueve.setText("Ancho:");
-        getContentPane().add(nueve, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 160, 140, -1));
+        getContentPane().add(nueve, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 140, -1));
 
         editar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         editar.setText("Editar información del arbol");
@@ -393,7 +398,7 @@ public class Perfil extends javax.swing.JFrame {
                 editarMouseClicked(evt);
             }
         });
-        getContentPane().add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 10, -1, -1));
+        getContentPane().add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setText("Actualizar Foto");
@@ -402,7 +407,35 @@ public class Perfil extends javax.swing.JFrame {
                 jButton2MouseClicked(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 50, 197, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 50, 197, -1));
+
+        zoomin.setBackground(new java.awt.Color(204, 204, 204));
+        zoomin.setForeground(new java.awt.Color(204, 204, 204));
+        zoomin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/zoom.png"))); // NOI18N
+        zoomin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                zoominActionPerformed(evt);
+            }
+        });
+        getContentPane().add(zoomin, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 10, 60, 40));
+
+        zoomout.setBackground(new java.awt.Color(204, 204, 204));
+        zoomout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nzoom.png"))); // NOI18N
+        zoomout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                zoomoutActionPerformed(evt);
+            }
+        });
+        getContentPane().add(zoomout, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 60, 60, 40));
+
+        foto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        foto2.setViewportView(foto);
+
+        getContentPane().add(foto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 10, 210, 280));
+
+        diez.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        diez.setText("Estado de salud:");
+        getContentPane().add(diez, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 220, -1));
 
         j.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/caminante.gif"))); // NOI18N
         getContentPane().add(j, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 2, 1420, 1190));
@@ -438,7 +471,7 @@ public class Perfil extends javax.swing.JFrame {
                     entrada = new FileInputStream(String.valueOf(hp));
                     imagen = AbrirArchivo(hp);
                     ImageIcon i = new ImageIcon(imagen);
-                    Icon im = new ImageIcon(i.getImage().getScaledInstance(foto.getWidth(), foto.getHeight(), Image.SCALE_DEFAULT));
+                    Icon im = new ImageIcon(i.getImage().getScaledInstance(j.getWidth(), j.getHeight(), Image.SCALE_DEFAULT));
                     foto.setIcon(im);
                     Connection c = conexion();
                     JDateChooser jd = new JDateChooser();
@@ -480,6 +513,20 @@ public class Perfil extends javax.swing.JFrame {
         }*/
     }//GEN-LAST:event_formWindowClosing
 
+    private void zoominActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zoominActionPerformed
+        int w=foto.getWidth();
+        int h=foto.getHeight();
+        ImageIcon ii=new ImageIcon(ZoomImage(w+100, h+100, anuel));
+        foto.setIcon(ii);
+    }//GEN-LAST:event_zoominActionPerformed
+
+    private void zoomoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zoomoutActionPerformed
+        int w=foto.getWidth();
+        int h=foto.getHeight();
+        ImageIcon ii=new ImageIcon(ZoomImage(w-100, h-100, anuel));
+        foto.setIcon(ii);
+    }//GEN-LAST:event_zoomoutActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -517,9 +564,11 @@ public class Perfil extends javax.swing.JFrame {
     private javax.swing.JTextArea area;
     private javax.swing.JLabel cinco;
     private javax.swing.JLabel cuatro;
+    private javax.swing.JLabel diez;
     private javax.swing.JLabel dos;
     private javax.swing.JButton editar;
     private javax.swing.JLabel foto;
+    private javax.swing.JScrollPane foto2;
     private javax.swing.JLabel j;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -543,7 +592,8 @@ public class Perfil extends javax.swing.JFrame {
     private javax.swing.JLabel siete;
     private javax.swing.JLabel titulo;
     private javax.swing.JLabel tres;
-    private javax.swing.JLabel uno;
+    private javax.swing.JButton zoomin;
+    private javax.swing.JButton zoomout;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -276,7 +276,7 @@ public class NuevoArbol extends javax.swing.JFrame {
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 490, -1, -1));
         getContentPane().add(fechafoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 490, 90, -1));
 
-        zona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "------------------", "ZONA 1", "ZONA 2", "ZONA 3", "ZONA 4", "ZONA 5" }));
+        zona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "------------------", "zona 1", "zona 2", "zona 3", "zona 4", "zona 5" }));
         getContentPane().add(zona, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 110, 30));
 
         jLabel10.setFont(new java.awt.Font("Microsoft Tai Le", 1, 18)); // NOI18N
@@ -339,6 +339,11 @@ public class NuevoArbol extends javax.swing.JFrame {
                     ps.setString(6, ancho.getText());
                     ps.setString(7, edad.getText());
                     ps.setString(8, fs.getDate().toString());
+                    int i = ps.executeUpdate();
+                    ps.close();
+                    if (i > 0) {
+                        JOptionPane.showMessageDialog(null, "Se ha registrado el nuevo arbol de aguacate con id " + id.getText());
+                    }
                    /* if (hp != null){
                          entrada = new FileInputStream(String.valueOf(hp));
                     ps.setBinaryStream(9, entrada);
