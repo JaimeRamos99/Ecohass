@@ -385,7 +385,7 @@ public class Perfil extends javax.swing.JFrame {
 
         ocho.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         ocho.setText("Fecha de la foto:");
-        getContentPane().add(ocho, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 310, -1));
+        getContentPane().add(ocho, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 310, -1));
 
         nueve.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nueve.setText("Ancho:");

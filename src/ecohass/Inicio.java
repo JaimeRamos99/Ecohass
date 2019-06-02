@@ -29,13 +29,14 @@ public class Inicio extends javax.swing.JFrame {
 
     int pass;
     Connection c = conexion();
+
     public Inicio(int proveniencia) {
         initComponents();
-        
+
         pass = proveniencia;
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setLayout(null);
-        j.setBounds(0, 0,(int) screenSize.getWidth(), (int)screenSize.getHeight());
+        j.setBounds(0, 0, (int) screenSize.getWidth(), (int) screenSize.getHeight());
         ImageIcon icn = new ImageIcon(getClass().getResource("/imagenes/ff.jpeg"));
         Icon im = new ImageIcon(icn.getImage().getScaledInstance(j.getWidth(), j.getHeight(), Image.SCALE_DEFAULT));
         j.setIcon(im);
@@ -48,7 +49,7 @@ public class Inicio extends javax.swing.JFrame {
         add = this.add(j);
         jButton1.setBounds(10, 650, 200, 50);
     }
-    
+
     private Inicio() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -158,18 +159,18 @@ public class Inicio extends javax.swing.JFrame {
             if (uno.isSelected()) {
                 boolean b = true;
                 try {
-                    do{
+                    do {
                         int arbol;
                         arbol = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite el id del arbol"));
-                        if (existencia(Integer.toString(arbol))){
+                        if (existencia(Integer.toString(arbol))) {
                             b = false;
                             this.setVisible(false);
-                            Perfil p = new Perfil("a", arbol,pass);
+                            Perfil p = new Perfil("a", arbol, pass);
                             p.setVisible(true);
-                        }else{
-                            JOptionPane.showMessageDialog(null, "El arbol "+arbol+" no ha sido registrado.");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "El arbol " + arbol + " no ha sido registrado.");
                         }
-                    }while (b == true);
+                    } while (b == true);
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Debe digitar un número valido");
                 } catch (SQLException ex) {
@@ -178,9 +179,15 @@ public class Inicio extends javax.swing.JFrame {
 
             } else {
                 if (Todos.isSelected()) {
-                    this.setVisible(false);
-                    VistaGeneral v = new VistaGeneral("a",pass);
-                    v.setVisible(true);
+                    try {
+                        this.setVisible(false);
+                        VistaGeneral v;
+                        v = new VistaGeneral("a", pass);
+                        v.setVisible(true);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
                 }
             }
         } else {
@@ -195,6 +202,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void tMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tMouseClicked
         if (uno.isSelected() || Todos.isSelected()) {
+
             if (uno.isSelected()) {
                 boolean b = true;
                 try {
@@ -204,7 +212,7 @@ public class Inicio extends javax.swing.JFrame {
                         if (arbol < 3000 && arbol > 0) {
                             b = false;
                             this.setVisible(false);
-                            Perfil p = new Perfil("t", arbol,pass);
+                            Perfil p = new Perfil("t", arbol, pass);
                             p.setVisible(true);
                         }
                     }
@@ -215,11 +223,15 @@ public class Inicio extends javax.swing.JFrame {
                 }
             } else {
                 if (Todos.isSelected()) {
-                    this.setVisible(false);
-                    VistaGeneral v = new VistaGeneral("t",pass);
-                    v.setVisible(true);
+                    try {
+                        this.setVisible(false);
+                        VistaGeneral v;
+                        v = new VistaGeneral("t", pass);
+                        v.setVisible(true);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
-
             }
         } else {
             JOptionPane.showMessageDialog(null, "Debe seleccionar si la consulta es individual o general");
@@ -231,8 +243,8 @@ public class Inicio extends javax.swing.JFrame {
         if (pass == 1) {
             menu l = new menu();
             l.setVisible(true);
-        }else{
-            Login l=new Login();
+        } else {
+            Login l = new Login();
             l.setVisible(true);
         }
 
@@ -270,7 +282,7 @@ public class Inicio extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */
