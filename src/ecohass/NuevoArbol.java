@@ -100,7 +100,7 @@ public class NuevoArbol extends javax.swing.JFrame {
         fechafoto.setVisible(false);
         jLabel9.setVisible(false);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        j.setBounds(0, 0,(int) screenSize.getWidth(), (int)screenSize.getHeight());
+        j.setBounds(0, 0, (int) screenSize.getWidth(), (int) screenSize.getHeight());
         ImageIcon icn = new ImageIcon(getClass().getResource("/imagenes/nuevo.gif"));
         Icon im = new ImageIcon(icn.getImage().getScaledInstance(j.getWidth(), j.getHeight(), Image.SCALE_DEFAULT));
         j.setIcon(im);
@@ -344,7 +344,7 @@ public class NuevoArbol extends javax.swing.JFrame {
                     if (i > 0) {
                         JOptionPane.showMessageDialog(null, "Se ha registrado el nuevo arbol de aguacate con id " + id.getText());
                     }
-                   /* if (hp != null){
+                    /* if (hp != null){
                          entrada = new FileInputStream(String.valueOf(hp));
                     ps.setBinaryStream(9, entrada);
                     }else{
@@ -378,23 +378,24 @@ public class NuevoArbol extends javax.swing.JFrame {
                 }
 
             } else {
-                if(id.equals("")){
-                JOptionPane.showMessageDialog(null, "Debes proporcionar un id", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
-            }else{
+                if (id.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Debes proporcionar un id", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+                } else {
                     JOptionPane.showMessageDialog(null, "Debes proporcionar una zona", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
                 }
             }
         } catch (SQLException ex) {
             Logger.getLogger(NuevoArbol.class.getName()).log(Level.SEVERE, null, ex);
-        } /*catch (FileNotFoundException ex) {
+        }
+        /*catch (FileNotFoundException ex) {
             Logger.getLogger(NuevoArbol.class.getName()).log(Level.SEVERE, null, ex);
         }*/
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         menu m = new menu();
-        this.dispose();
         m.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

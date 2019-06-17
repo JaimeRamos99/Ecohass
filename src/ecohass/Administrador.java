@@ -171,16 +171,16 @@ public class Administrador extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Tarea actualizada exitosamente.");
             }
             ps2 = c.prepareStatement("SELECT titulo,estado FROM tareas");
-                rr = ps2.executeQuery();
-                int contador = 0;
-                while (rr.next()) {
-                    datos[contador] = rr.getString("titulo");
-                    clase k = new clase(rr.getString("titulo"), rr.getString("estado"));
-                    dm.addElement(k);
-                    contador++;
-                }
-                l2.setCellRenderer(new CustomRenderer());
-                l2.setModel(dm);
+            rr = ps2.executeQuery();
+            int contador = 0;
+            while (rr.next()) {
+                datos[contador] = rr.getString("titulo");
+                clase k = new clase(rr.getString("titulo"), rr.getString("estado"));
+                dm.addElement(k);
+                contador++;
+            }
+            l2.setCellRenderer(new CustomRenderer());
+            l2.setModel(dm);
         } else {
             JOptionPane.showMessageDialog(null, "No se pudo llevar a cabo la solicitud.", "ADVERTENCIA", JOptionPane.ERROR_MESSAGE);
         }
@@ -197,25 +197,28 @@ public class Administrador extends javax.swing.JFrame {
         initComponents();
         jMenuItem1.setText("Cambiar estado");
         jMenuItem2.setText("Detalles");
+        int ancho=this.getWidth();
+        int altura=this.getHeight();
         this.setExtendedState(MAXIMIZED_BOTH);
         Connection c = conexion();
         fecha.setDate(new Date());
-        j.setBounds(0, 0, this.getWidth() * 2, 170);
-        fondo.setBounds(0, 170, this.getWidth() * 2, 900);
-        nt.setBounds(10, 160, 170, 80);
-        ntxt.setBounds(180, 185, 200, 30);
-        cedu.setBounds(10, 225, 200, 30);
-        ce.setBounds(180, 225, 200, 30);
-        fo.setBounds(10, 270, 200, 30);
-        fecha.setBounds(180, 270, 200, 30);
-        to.setBounds(10, 315, 200, 30);
-        txt.setBounds(180, 315, 200, 30);
-        da.setBounds(10, 350, 100, 30);
-        dtx.setBounds(180, 350, 200, 30);
-        a.setBounds(10, 395, 450, 200);
-        oa.setBounds(700, 170, 200, 80);
-        combo2.setBounds(390, 350, 200, 30);
-        back.setLocation(10, this.getHeight() - 100);
+        titu.setBounds((int) ancho / 2, 20,titu.getWidth(),titu.getHeight());
+        j.setBounds(0, 0, ancho, (int)(altura*0.18));
+        fondo.setBounds(0, (int)(altura*0.18), ancho, (int)(altura*0.7742));
+        nt.setBounds(10, (int)(altura*0.20), (int)(ancho*0.1227), (int)(altura*0.1015));
+        ntxt.setBounds((int)(ancho*0.13), (int)(altura*0.23477), (int)(ancho*0.1443), (int)(altura*0.0381));
+        cedu.setBounds(10, (int)(altura*0.29), (int)(ancho*0.1443), (int)(altura*0.03807));
+        ce.setBounds((int)(ancho*0.1298), (int)(altura*0.2855), (int)(ancho*0.1443), 30);
+        fo.setBounds(10, (int)(altura*0.3426), (int)(ancho*0.1443), (int)(altura*0.0381));
+        fecha.setBounds((int)(ancho*0.13), (int)(altura*0.3426), (int)(ancho*0.1443), (int)(altura*0.0381));
+        to.setBounds(10, (int)(altura*0.3997), (int)(ancho*0.1443), (int)(altura*0.0381));
+        txt.setBounds((int)(ancho*0.1298), (int)(altura*0.3997),(int)(ancho*0.1443),(int)(altura*0.0381));
+        da.setBounds(10, (int)(altura*0.4441), (int)(ancho*0.07215), (int)(altura*0.0381));
+        dtx.setBounds((int)(ancho*0.1298),(int)(altura*0.4441), (int)(ancho*0.1443), (int)(altura*0.0381));
+        a.setBounds(10, (int)(altura*0.5012), (int)(ancho*0.3246), (int)(altura*0.2538));
+        oa.setBounds((int)(ancho*0.5050), (int)(altura*0.2157), (int)(ancho*0.1443),(int)(altura*0.1015));
+        combo2.setBounds((int)(ancho*0.2813), (int)(altura*0.4441), (int)(ancho*0.1443), (int)(altura*0.0381));
+        back.setLocation(10, altura - 100);
         Border lineBorder = BorderFactory.createLineBorder(Color.BLACK, 1);
         a.setBorder(lineBorder);
         l2.setModel(dm);
@@ -272,7 +275,7 @@ public class Administrador extends javax.swing.JFrame {
                 if(vectores[i]==0){
                 }
             }*/
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e);
         }
 
@@ -285,7 +288,7 @@ public class Administrador extends javax.swing.JFrame {
         pop = new javax.swing.JPopupMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jLabel1 = new javax.swing.JLabel();
+        titu = new javax.swing.JLabel();
         j = new javax.swing.JLabel();
         boton = new javax.swing.JButton();
         to = new javax.swing.JLabel();
@@ -337,10 +340,10 @@ public class Administrador extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setFont(new java.awt.Font("Microsoft Tai Le", 1, 48)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/manager.png"))); // NOI18N
-        jLabel1.setText("Tareas");
+        titu.setBackground(new java.awt.Color(0, 0, 0));
+        titu.setFont(new java.awt.Font("Microsoft Tai Le", 1, 48)); // NOI18N
+        titu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/manager.png"))); // NOI18N
+        titu.setText("Tareas");
 
         j.setBackground(new java.awt.Color(0, 102, 0));
 
@@ -501,7 +504,7 @@ public class Administrador extends javax.swing.JFrame {
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(495, 495, 495)
-                        .addComponent(jLabel1))
+                        .addComponent(titu))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(176, 176, 176)
                         .addComponent(boton, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -544,7 +547,7 @@ public class Administrador extends javax.swing.JFrame {
                                 .addComponent(txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(jLabel1)
+                        .addComponent(titu)
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(j, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -725,7 +728,7 @@ public class Administrador extends javax.swing.JFrame {
             ps = c.prepareStatement("SELECT * FROM tareas WHERE titulo='" + title + "'");
             rr = ps.executeQuery();
             while (rr.next()) {
-                JOptionPane.showMessageDialog(null, "Titulo: " + rr.getString("titulo") + newline + "Creador: " + rr.getString("nombre")+newline+"Receptor: "+rr.getString("receptor")+ newline + "Tarea: " + nuevacadena(rr.getString("tarea")) + newline + "fecha de creación:" + lafecha(rr.getString("fecha")));
+                JOptionPane.showMessageDialog(null, "Titulo: " + rr.getString("titulo") + newline + "Creador: " + rr.getString("nombre") + newline + "Receptor: " + rr.getString("receptor") + newline + "Tarea: " + nuevacadena(rr.getString("tarea")) + newline + "fecha de creación:" + lafecha(rr.getString("fecha")));
             }
 
         } catch (SQLException ex) {
@@ -742,7 +745,7 @@ public class Administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void ceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ceKeyTyped
-         char validar = evt.getKeyChar();
+        char validar = evt.getKeyChar();
         if (Character.isLetter(validar)) {
             getToolkit().beep();
             evt.consume();
@@ -808,7 +811,6 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JLabel fo;
     private javax.swing.JLabel fondo;
     private javax.swing.JLabel j;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -818,6 +820,7 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JTextField ntxt;
     private javax.swing.JLabel oa;
     private javax.swing.JPopupMenu pop;
+    private javax.swing.JLabel titu;
     private javax.swing.JLabel to;
     private javax.swing.JTextField txt;
     // End of variables declaration//GEN-END:variables

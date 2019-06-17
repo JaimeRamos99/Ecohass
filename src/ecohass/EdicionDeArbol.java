@@ -173,8 +173,8 @@ public class EdicionDeArbol extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         try {
             Perfil p = new Perfil("a", ids, ruta);
-            this.dispose();
             p.setVisible(true);
+            this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(EdicionDeArbol.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -182,7 +182,6 @@ public class EdicionDeArbol extends javax.swing.JFrame {
 
     private void jButton10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseClicked
         Object[] zonas = {"zona 1", "zona 2", "zona 3", "zona 4", "zona 5"};
-        
         Connection c = conexion();
         try {
             if (!(zona.isSelected() || altura.isSelected() || ancho.isSelected() || edad.isSelected() || nivel.isSelected() || siembra.isSelected() || foto.isSelected() || total.isSelected() || salu.isSelected())) {
@@ -300,9 +299,42 @@ public class EdicionDeArbol extends javax.swing.JFrame {
                     panel.add(button5);
                     JOptionPane.showMessageDialog(null, panel);
                     salu.setSelected(false);
+                    String palabra;
+                    if (button1.isSelected()) {
+                        System.out.println("1");
+                        palabra = "1";
+                    } else {
+                        if (button2.isSelected()) {
+                            palabra = "2";
+                        } else {
+                            if (button3.isSelected()) {
+                                palabra = "3";
+                            } else {
+                                if (button4.isSelected()) {
+                                    palabra = "4";
+                                } else {
+                                    if (button5.isSelected()) {
+                                        palabra = "5";
+                                    } else {
+                                        palabra = "6";
+                                         JOptionPane.showMessageDialog(null, "No se seleccionó nada.");  
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                   if(!("6".equals(palabra))){
+                       ps = c.prepareStatement("UPDATE aguacates SET salud = ? WHERE id=" + ids);
+                       ps.setString(1, palabra);
+                       int e = ps.executeUpdate();
+                       if(e==1){
+                         JOptionPane.showMessageDialog(null, "Se ha completado la actualización.");  
+                       }
+                         
+                   }
                 }
             }
-
         } catch (SQLException | NullPointerException ex) {
             Logger.getLogger(EdicionDeArbol.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "No se llevó a acabo la actualización.");

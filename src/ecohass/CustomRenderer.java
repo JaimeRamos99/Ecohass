@@ -37,7 +37,6 @@ public class CustomRenderer extends DefaultListCellRenderer implements ListCellR
             setBackground(list.getBackground());
             setForeground(list.getForeground());
         }
-        System.out.println(value);
         ImageIcon icn = new ImageIcon(getClass().getResource(imagen));
         Icon im = new ImageIcon(icn.getImage().getScaledInstance(24, 24, Image.SCALE_DEFAULT));
         setIcon(im);

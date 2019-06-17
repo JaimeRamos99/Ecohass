@@ -164,9 +164,9 @@ public class Inicio extends javax.swing.JFrame {
                         arbol = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite el id del arbol"));
                         if (existencia(Integer.toString(arbol))) {
                             b = false;
-                            this.setVisible(false);
                             Perfil p = new Perfil("a", arbol, pass);
                             p.setVisible(true);
+                            this.setVisible(false);
                         } else {
                             JOptionPane.showMessageDialog(null, "El arbol " + arbol + " no ha sido registrado.");
                         }
@@ -180,10 +180,10 @@ public class Inicio extends javax.swing.JFrame {
             } else {
                 if (Todos.isSelected()) {
                     try {
-                        this.setVisible(false);
                         VistaGeneral v;
                         v = new VistaGeneral("a", pass);
                         v.setVisible(true);
+                        this.setVisible(false);
                     } catch (SQLException ex) {
                         Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -211,9 +211,9 @@ public class Inicio extends javax.swing.JFrame {
                         arbol = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite el id del arbol"));
                         if (arbol < 3000 && arbol > 0) {
                             b = false;
-                            this.setVisible(false);
                             Perfil p = new Perfil("t", arbol, pass);
                             p.setVisible(true);
+                            this.setVisible(false);
                         }
                     }
                 } catch (NumberFormatException ex) {
@@ -224,10 +224,10 @@ public class Inicio extends javax.swing.JFrame {
             } else {
                 if (Todos.isSelected()) {
                     try {
-                        this.setVisible(false);
                         VistaGeneral v;
                         v = new VistaGeneral("t", pass);
                         v.setVisible(true);
+                        this.setVisible(false);
                     } catch (SQLException ex) {
                         Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -239,7 +239,6 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_tMouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        this.dispose();
         if (pass == 1) {
             menu l = new menu();
             l.setVisible(true);
@@ -247,7 +246,7 @@ public class Inicio extends javax.swing.JFrame {
             Login l = new Login();
             l.setVisible(true);
         }
-
+        this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
