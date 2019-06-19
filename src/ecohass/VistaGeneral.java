@@ -33,8 +33,8 @@ public class VistaGeneral extends javax.swing.JFrame {
         initComponents();
         Connection c = conexion();
         ruta = pr;
-        int ancho=this.getWidth();
-        int altura=this.getHeight();
+        int ancho = this.getWidth();
+        int altura = this.getHeight();
         this.setExtendedState(MAXIMIZED_BOTH);
         if (fruta.equals("a")) {
             titulo.setText("Información de aguacates");
@@ -42,15 +42,16 @@ public class VistaGeneral extends javax.swing.JFrame {
         } else {
             titulo.setText("Información de tomates de arbol");
         }
-        titulo.setBounds((int)(ancho*0.4),50, (int)(ancho*0.4), (int)(altura*0.1));
-        jTabbedPane1.setBounds((int)(ancho*0.4), (int)(altura*0.5), (int)(ancho*0.8), (int)(altura*0.2));
-        int cont1=0,cont2=0,cont3=0,cont4=0,cont5=0;
-        DefaultListModel l1, l2, l3, l4, l5;
+        titulo.setBounds((int) (ancho * 0.4), 50, (int) (ancho * 0.4), (int) (altura * 0.1));
+        jTabbedPane1.setBounds((int) (ancho * 0.4), (int) (altura * 0.5), (int) (ancho * 0.8), (int) (altura * 0.2));
+        int cont1 = 0, cont2 = 0, cont3 = 0, cont4 = 0, cont5 = 0;
+        DefaultListModel l1, l2, l3, l4, l5, l6;
         l1 = new DefaultListModel();
         l2 = new DefaultListModel();
         l3 = new DefaultListModel();
         l4 = new DefaultListModel();
         l5 = new DefaultListModel();
+        l6 = new DefaultListModel();
         ps = c.prepareStatement("SELECT id,zona FROM aguacates WHERE id > 0");
         rr = ps.executeQuery();
         while (rr.next()) {
@@ -76,17 +77,21 @@ public class VistaGeneral extends javax.swing.JFrame {
                     }
                 }
             }
+            l6.addElement(rr.getString("id"));
         }
         existentes1.setModel(l1);
         existentes2.setModel(l2);
         existentes3.setModel(l3);
         existentes4.setModel(l4);
         existentes5.setModel(l5);
-        existentestxt1.setText(existentestxt1.getText()+cont1);
-        existentestxt2.setText(existentestxt2.getText()+cont2);
-        existentestxt3.setText(existentestxt3.getText()+cont3);
-        existentestxt4.setText(existentestxt4.getText()+cont4);
-        existentestxt5.setText(existentestxt5.getText()+cont5);
+        lg2.setModel(l6);
+        existentestxt1.setText(existentestxt1.getText() + cont1);
+        existentestxt2.setText(existentestxt2.getText() + cont2);
+        existentestxt3.setText(existentestxt3.getText() + cont3);
+        existentestxt4.setText(existentestxt4.getText() + cont4);
+        existentestxt5.setText(existentestxt5.getText() + cont5);
+
+        exgeneral.setText(exgeneral.getText() + (cont1 + cont2 + cont3 + cont4 + cont5));
     }
 
     private VistaGeneral() {
@@ -195,15 +200,15 @@ public class VistaGeneral extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        lg1 = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        lg2 = new javax.swing.JList<>();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<>();
+        lg3 = new javax.swing.JList<>();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jList4 = new javax.swing.JList<>();
+        lg4 = new javax.swing.JList<>();
         jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
+        exgeneral = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -246,38 +251,18 @@ public class VistaGeneral extends javax.swing.JFrame {
         jLabel4.setText("Arboles pertenecientes a este lote");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(209, 25, -1, -1));
 
-        jList21.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane21.setViewportView(jList21);
 
         jPanel1.add(jScrollPane21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 160, 380));
 
-        existentes1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane22.setViewportView(existentes1);
 
         jPanel1.add(jScrollPane22, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 240, 380));
 
-        jList23.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane23.setViewportView(jList23);
 
         jPanel1.add(jScrollPane23, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, 230, 380));
 
-        jList24.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane24.setViewportView(jList24);
 
         jPanel1.add(jScrollPane24, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 50, 160, 380));
@@ -318,38 +303,18 @@ public class VistaGeneral extends javax.swing.JFrame {
         jLabel8.setText("Arboles enfermos");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(779, 26, -1, -1));
 
-        jList17.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane17.setViewportView(jList17);
 
         jPanel2.add(jScrollPane17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 160, 400));
 
-        existentes2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane18.setViewportView(existentes2);
 
         jPanel2.add(jScrollPane18, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 240, 400));
 
-        jList19.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane19.setViewportView(jList19);
 
         jPanel2.add(jScrollPane19, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, 240, 400));
 
-        jList20.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane20.setViewportView(jList20);
 
         jPanel2.add(jScrollPane20, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 50, 160, 400));
@@ -390,38 +355,18 @@ public class VistaGeneral extends javax.swing.JFrame {
         jLabel12.setText("Arboles enfermos");
         jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(744, 25, -1, -1));
 
-        jList13.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane13.setViewportView(jList13);
 
         jPanel3.add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 160, 380));
 
-        existentes3.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane14.setViewportView(existentes3);
 
         jPanel3.add(jScrollPane14, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 230, 380));
 
-        jList15.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane15.setViewportView(jList15);
 
         jPanel3.add(jScrollPane15, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, 230, 380));
 
-        jList16.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane16.setViewportView(jList16);
 
         jPanel3.add(jScrollPane16, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 50, 150, 380));
@@ -462,38 +407,18 @@ public class VistaGeneral extends javax.swing.JFrame {
         jLabel16.setText("Arboles enfermos");
         jPanel4.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(744, 25, -1, -1));
 
-        jList9.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane9.setViewportView(jList9);
 
         jPanel4.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 160, 380));
 
-        existentes4.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane10.setViewportView(existentes4);
 
         jPanel4.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 230, 380));
 
-        jList11.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane11.setViewportView(jList11);
 
         jPanel4.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, 230, 380));
 
-        jList12.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane12.setViewportView(jList12);
 
         jPanel4.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 50, 170, 380));
@@ -538,41 +463,21 @@ public class VistaGeneral extends javax.swing.JFrame {
         jPanel5.add(jLabel20);
         jLabel20.setBounds(744, 25, 121, 17);
 
-        jList5.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane5.setViewportView(jList5);
 
         jPanel5.add(jScrollPane5);
         jScrollPane5.setBounds(10, 50, 170, 400);
 
-        existentes5.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane6.setViewportView(existentes5);
 
         jPanel5.add(jScrollPane6);
         jScrollPane6.setBounds(210, 50, 240, 400);
 
-        jList7.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane7.setViewportView(jList7);
 
         jPanel5.add(jScrollPane7);
         jScrollPane7.setBounds(480, 50, 230, 400);
 
-        jList8.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane8.setViewportView(jList8);
 
         jPanel5.add(jScrollPane8);
@@ -622,42 +527,22 @@ public class VistaGeneral extends javax.swing.JFrame {
         jPanel6.add(jLabel24);
         jLabel24.setBounds(744, 25, 121, 17);
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(lg1);
 
         jPanel6.add(jScrollPane1);
         jScrollPane1.setBounds(10, 53, 157, 420);
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(lg2);
 
         jPanel6.add(jScrollPane2);
         jScrollPane2.setBounds(209, 61, 242, 410);
 
-        jList3.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane3.setViewportView(jList3);
+        jScrollPane3.setViewportView(lg3);
 
         jPanel6.add(jScrollPane3);
         jScrollPane3.setBounds(490, 60, 224, 410);
 
-        jList4.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane4.setViewportView(jList4);
+        jScrollPane4.setViewportView(lg4);
 
         jPanel6.add(jScrollPane4);
         jScrollPane4.setBounds(740, 60, 200, 410);
@@ -667,10 +552,10 @@ public class VistaGeneral extends javax.swing.JFrame {
         jPanel6.add(jLabel29);
         jLabel29.setBounds(10, 480, 190, 17);
 
-        jLabel30.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel30.setText("Cantidad total: ");
-        jPanel6.add(jLabel30);
-        jLabel30.setBounds(210, 480, 240, 17);
+        exgeneral.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        exgeneral.setText("Cantidad total: ");
+        jPanel6.add(exgeneral);
+        exgeneral.setBounds(210, 480, 240, 17);
 
         jLabel31.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel31.setText("Cantidad total: ");
@@ -714,6 +599,7 @@ public class VistaGeneral extends javax.swing.JFrame {
                 .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -774,6 +660,7 @@ public class VistaGeneral extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel exgeneral;
     private javax.swing.JList<String> existentes1;
     private javax.swing.JList<String> existentes2;
     private javax.swing.JList<String> existentes3;
@@ -804,7 +691,6 @@ public class VistaGeneral extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
@@ -828,7 +714,6 @@ public class VistaGeneral extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList11;
     private javax.swing.JList<String> jList12;
     private javax.swing.JList<String> jList13;
@@ -836,13 +721,10 @@ public class VistaGeneral extends javax.swing.JFrame {
     private javax.swing.JList<String> jList16;
     private javax.swing.JList<String> jList17;
     private javax.swing.JList<String> jList19;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JList<String> jList20;
     private javax.swing.JList<String> jList21;
     private javax.swing.JList<String> jList23;
     private javax.swing.JList<String> jList24;
-    private javax.swing.JList<String> jList3;
-    private javax.swing.JList<String> jList4;
     private javax.swing.JList<String> jList5;
     private javax.swing.JList<String> jList7;
     private javax.swing.JList<String> jList8;
@@ -878,6 +760,10 @@ public class VistaGeneral extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JList<String> lg1;
+    private javax.swing.JList<String> lg2;
+    private javax.swing.JList<String> lg3;
+    private javax.swing.JList<String> lg4;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

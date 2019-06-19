@@ -202,46 +202,48 @@ public class Administrador extends javax.swing.JFrame {
     }
 
     public void actualizar(int r, int dif,String m) throws SQLException, IOException {
-        Connection c = conexion();
-        if (r > 0) {
-            dm.clear();
-            if (dif == 0) {
-                File archivo;
-                PrintWriter escribir;
-                archivo=new File(txt.getText()+".doc");
-                if(!archivo.exists()){
-                    archivo.createNewFile();
-                    escribir=new PrintWriter(archivo,"utf-8");
-                    escribir.println(m);
-                    escribir.close();
-                }else{
-                    System.out.println("no existe");
+        try (Connection c = conexion()) {
+            String newline=System.lineSeparator();
+            if (r > 0) {
+                dm.clear();
+                if (dif == 0) {
+                    File archivo;
+                    PrintWriter escribir;
+                    archivo=new File(txt.getText()+".doc");
+                    if(!archivo.exists()){
+                        archivo.createNewFile();
+                        escribir=new PrintWriter(archivo,"utf-8");
+                        escribir.println(m);
+                        escribir.close();
+                    }else{
+                        System.out.println("no existe");
+                    }
+                    JOptionPane.showMessageDialog(null, "Tarea creada exitosamente."+ newline+
+                            "Se ha creado un documento de word con el nombre de la tarea, ubicado en la misma carpeta donde se encuentra este programa.");
+                    ce.setText("");
+                    ntxt.setText("");
+                    txt.setText("");
+                    a.setText("");
+                    combo2.setSelectedIndex(0);
+                    dtx.setSelectedIndex(0);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Tarea actualizada exitosamente.");
                 }
-                JOptionPane.showMessageDialog(null, "Tarea creada exitosamente.");
-                ce.setText("");
-                ntxt.setText("");
-                txt.setText("");
-                a.setText("");
-                combo2.setSelectedIndex(0);
-                dtx.setSelectedIndex(0);
+                ps2 = c.prepareStatement("SELECT titulo,estado FROM tareas");
+                rr = ps2.executeQuery();
+                int contador = 0;
+                while (rr.next()) {
+                    datos[contador] = rr.getString("titulo");
+                    clase k = new clase(rr.getString("titulo"), rr.getString("estado"));
+                    dm.addElement(k);
+                    contador++;
+                }
+                l2.setCellRenderer(new CustomRenderer());
+                l2.setModel(dm);
             } else {
-                JOptionPane.showMessageDialog(null, "Tarea actualizada exitosamente.");
+                JOptionPane.showMessageDialog(null, "No se pudo llevar a cabo la solicitud.", "ADVERTENCIA", JOptionPane.ERROR_MESSAGE);
             }
-            ps2 = c.prepareStatement("SELECT titulo,estado FROM tareas");
-            rr = ps2.executeQuery();
-            int contador = 0;
-            while (rr.next()) {
-                datos[contador] = rr.getString("titulo");
-                clase k = new clase(rr.getString("titulo"), rr.getString("estado"));
-                dm.addElement(k);
-                contador++;
-            }
-            l2.setCellRenderer(new CustomRenderer());
-            l2.setModel(dm);
-        } else {
-            JOptionPane.showMessageDialog(null, "No se pudo llevar a cabo la solicitud.", "ADVERTENCIA", JOptionPane.ERROR_MESSAGE);
         }
-        c.close();
     }
 
     public static String fechactual() {
