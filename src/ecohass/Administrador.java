@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -110,6 +111,51 @@ public class Administrador extends javax.swing.JFrame {
         return nuevo;
     }
 
+    public static String lafecha2(String f) {
+        String mes = "";
+
+        switch (f.substring(4, 7)) {
+            case "Jan":
+                mes = "Enero";
+                break;
+            case "Feb":
+                mes = "Febrero";
+                break;
+            case "Mar":
+                mes = "Marzo";
+                break;
+            case "Apr":
+                mes = "Abril";
+                break;
+            case "May":
+                mes = "Mayo";
+                break;
+            case "Jun":
+                mes = "Junio";
+                break;
+            case "Jul":
+                mes = "Julio";
+                break;
+            case "Aug":
+                mes = "Agosto";
+                break;
+            case "Sep":
+                mes = "Septiembre";
+                break;
+            case "Oct":
+                mes = "Octubre";
+                break;
+            case "Nov":
+                mes = "Noviembre";
+                break;
+            case "Dec":
+                mes = "Diciembre";
+                break;
+
+        }
+        return f.substring(8, 10) + " de " + mes + " del " + f.substring(24, 28);
+    }
+
     public static String lafecha(String f) {
         String mes = "";
 
@@ -155,11 +201,22 @@ public class Administrador extends javax.swing.JFrame {
         return f.substring(8, 10) + " de " + mes + " del " + f.substring(24, 28) + " a las " + f.substring(11, 19);
     }
 
-    public void actualizar(int r, int dif) throws SQLException {
+    public void actualizar(int r, int dif,String m) throws SQLException, IOException {
         Connection c = conexion();
         if (r > 0) {
             dm.clear();
             if (dif == 0) {
+                File archivo;
+                PrintWriter escribir;
+                archivo=new File(txt.getText()+".doc");
+                if(!archivo.exists()){
+                    archivo.createNewFile();
+                    escribir=new PrintWriter(archivo,"utf-8");
+                    escribir.println(m);
+                    escribir.close();
+                }else{
+                    System.out.println("no existe");
+                }
                 JOptionPane.showMessageDialog(null, "Tarea creada exitosamente.");
                 ce.setText("");
                 ntxt.setText("");
@@ -197,27 +254,27 @@ public class Administrador extends javax.swing.JFrame {
         initComponents();
         jMenuItem1.setText("Cambiar estado");
         jMenuItem2.setText("Detalles");
-        int ancho=this.getWidth();
-        int altura=this.getHeight();
+        int ancho = this.getWidth();
+        int altura = this.getHeight();
         this.setExtendedState(MAXIMIZED_BOTH);
         Connection c = conexion();
         fecha.setDate(new Date());
-        titu.setBounds((int) ancho / 2, 20,titu.getWidth(),titu.getHeight());
-        j.setBounds(0, 0, ancho, (int)(altura*0.18));
-        fondo.setBounds(0, (int)(altura*0.18), ancho, (int)(altura*0.7742));
-        nt.setBounds(10, (int)(altura*0.20), (int)(ancho*0.1227), (int)(altura*0.1015));
-        ntxt.setBounds((int)(ancho*0.13), (int)(altura*0.23477), (int)(ancho*0.1443), (int)(altura*0.0381));
-        cedu.setBounds(10, (int)(altura*0.29), (int)(ancho*0.1443), (int)(altura*0.03807));
-        ce.setBounds((int)(ancho*0.1298), (int)(altura*0.2855), (int)(ancho*0.1443), 30);
-        fo.setBounds(10, (int)(altura*0.3426), (int)(ancho*0.1443), (int)(altura*0.0381));
-        fecha.setBounds((int)(ancho*0.13), (int)(altura*0.3426), (int)(ancho*0.1443), (int)(altura*0.0381));
-        to.setBounds(10, (int)(altura*0.3997), (int)(ancho*0.1443), (int)(altura*0.0381));
-        txt.setBounds((int)(ancho*0.1298), (int)(altura*0.3997),(int)(ancho*0.1443),(int)(altura*0.0381));
-        da.setBounds(10, (int)(altura*0.4441), (int)(ancho*0.07215), (int)(altura*0.0381));
-        dtx.setBounds((int)(ancho*0.1298),(int)(altura*0.4441), (int)(ancho*0.1443), (int)(altura*0.0381));
-        a.setBounds(10, (int)(altura*0.5012), (int)(ancho*0.3246), (int)(altura*0.2538));
-        oa.setBounds((int)(ancho*0.5050), (int)(altura*0.2157), (int)(ancho*0.1443),(int)(altura*0.1015));
-        combo2.setBounds((int)(ancho*0.2813), (int)(altura*0.4441), (int)(ancho*0.1443), (int)(altura*0.0381));
+        titu.setBounds((int) ancho / 2, 20, titu.getWidth(), titu.getHeight());
+        j.setBounds(0, 0, ancho, (int) (altura * 0.18));
+        fondo.setBounds(0, (int) (altura * 0.18), ancho, (int) (altura * 0.7742));
+        nt.setBounds(10, (int) (altura * 0.20), (int) (ancho * 0.1227), (int) (altura * 0.1015));
+        ntxt.setBounds((int) (ancho * 0.14), (int) (altura * 0.23477), (int) (ancho * 0.1443), (int) (altura * 0.0381));
+        cedu.setBounds(10, (int) (altura * 0.29), (int) (ancho * 0.1443), (int) (altura * 0.03807));
+        ce.setBounds((int) (ancho * 0.14), (int) (altura * 0.2855), (int) (ancho * 0.1443), 30);
+        fo.setBounds(10, (int) (altura * 0.3426), (int) (ancho * 0.1443), (int) (altura * 0.0381));
+        fecha.setBounds((int) (ancho * 0.15), (int) (altura * 0.3426), (int) (ancho * 0.1443), (int) (altura * 0.0381));
+        to.setBounds(10, (int) (altura * 0.3997), (int) (ancho * 0.1443), (int) (altura * 0.0381));
+        txt.setBounds((int) (ancho * 0.14), (int) (altura * 0.3997), (int) (ancho * 0.1443), (int) (altura * 0.0381));
+        da.setBounds(10, (int) (altura * 0.4441), (int) (ancho * 0.07215), (int) (altura * 0.0381));
+        dtx.setBounds((int) (ancho * 0.14), (int) (altura * 0.4441), (int) (ancho * 0.1443), (int) (altura * 0.0381));
+        a.setBounds(10, (int) (altura * 0.5012), (int) (ancho * 0.3246), (int) (altura * 0.2538));
+        oa.setBounds((int) (ancho * 0.5050), (int) (altura * 0.2157), (int) (ancho * 0.1443), (int) (altura * 0.1015));
+        combo2.setBounds((int) (ancho * 0.2813), (int) (altura * 0.4441), (int) (ancho * 0.1443), (int) (altura * 0.0381));
         back.setLocation(10, altura - 100);
         Border lineBorder = BorderFactory.createLineBorder(Color.BLACK, 1);
         a.setBorder(lineBorder);
@@ -379,7 +436,7 @@ public class Administrador extends javax.swing.JFrame {
         nt.setText("Nombre del técnico");
 
         fo.setFont(new java.awt.Font("Microsoft Tai Le", 1, 18)); // NOI18N
-        fo.setText("Fecha de la orden");
+        fo.setText("Fecha a cumplir orden");
 
         a.setColumns(20);
         a.setLineWrap(true);
@@ -583,11 +640,11 @@ public class Administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_ceActionPerformed
 
     private void botonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonMouseClicked
-        if (ce.getText().equals("") || fecha.getDate().equals("") || ntxt.getText().equals("") || txt.getText().equals("") || a.getText().equals("") || dtx.getSelectedItem().equals("- - - - - - - - - - - - - - - - - - - - - - - -") || combo2.getSelectedItem().equals("- - - - - - - - - - - - - - - - - - - - - - - -")) {//verificación si se llenaron todos los campos.
+        if (ce.getText().equals("") || fecha.getDate().toString().equals("") || ntxt.getText().equals("") || txt.getText().equals("") || a.getText().equals("") || dtx.getSelectedItem().equals("- - - - - - - - - - - - - - - - - - - - - - - -") || combo2.getSelectedItem().equals("- - - - - - - - - - - - - - - - - - - - - - - -")) {//verificación si se llenaron todos los campos.
             JOptionPane.showMessageDialog(null, "faltó rellenar alguno de los campos obligatorios", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
         } else {
             if (verificadorcedulaentero(ce.getText())) {
-                if (JOptionPane.showConfirmDialog(null, "¿Estás seguro que quieres agregar esta nueva nota?", "CONFIRMACIÓN", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
+                if (JOptionPane.showConfirmDialog(null, "¿Estás seguro que quieres agregar esta nueva tarea?", "CONFIRMACIÓN", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
                     try {
                         Properties props = new Properties();
                         props.setProperty("mail.smtp.host", "smtp.gmail.com");
@@ -622,13 +679,13 @@ public class Administrador extends javax.swing.JFrame {
                         ps.setString(1, ntxt.getText());
                         ps.setString(2, ce.getText());
                         ps.setString(3, txt.getText());
-                        ps.setString(4, fecha.getDate().toString());
+                        ps.setString(4, lafecha2(fecha.getDate().toString()));
                         ps.setString(5, a.getText());
                         ps.setString(6, "no cumplida");
                         ps.setString(7, dtx.getSelectedItem().toString());
                         ps.setString(8, combo2.getSelectedItem().toString());
                         int r = ps.executeUpdate();
-                        actualizar(r, 0);
+                        actualizar(r, 0,mensaje);
                     } catch (AddressException ex) {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (MessagingException ex) {
@@ -636,6 +693,8 @@ public class Administrador extends javax.swing.JFrame {
                     } catch (SQLIntegrityConstraintViolationException e) {
                         JOptionPane.showMessageDialog(null, "Debes cambiar el título, ya está registrado.", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
                     } catch (SQLException ex) {
+                        Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
                         Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
@@ -688,7 +747,7 @@ public class Administrador extends javax.swing.JFrame {
                                 psp.setString(5, "cumplida");
                                 psp.executeUpdate();
                                 ppp = c.prepareStatement("UPDATE tareas SET estado= 'cumplida' WHERE titulo='" + title + "'");
-                                actualizar(ppp.executeUpdate(), 1);
+                                actualizar(ppp.executeUpdate(), 1,"");
                             }
                         } else {
                             if (JOptionPane.showConfirmDialog(null, "¿Estás seguro que quieres marcar la tarea como no cumplida?", "CONFIRMACIÓN", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
@@ -702,7 +761,7 @@ public class Administrador extends javax.swing.JFrame {
                                 psp.setString(5, "no cumplida");
                                 psp.executeUpdate();
                                 ppp = c.prepareStatement("UPDATE tareas SET estado= 'no cumplida' WHERE titulo='" + title + "'");
-                                actualizar(ppp.executeUpdate(), 1);
+                                actualizar(ppp.executeUpdate(), 1,"");
 
                             }
                         }
@@ -711,6 +770,8 @@ public class Administrador extends javax.swing.JFrame {
                 }
                 c.close();
             } catch (SQLException ex) {
+                Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
                 Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
 

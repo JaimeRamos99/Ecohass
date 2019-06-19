@@ -281,7 +281,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Microsoft Tai Le" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Fecha de la orden"/>
+        <Property name="text" type="java.lang.String" value="Fecha a cumplir orden"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">

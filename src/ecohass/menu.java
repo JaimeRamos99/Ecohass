@@ -39,6 +39,7 @@ public class menu extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         j = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -81,8 +82,17 @@ public class menu extends javax.swing.JFrame {
         });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 187, 300, 40));
 
+        jButton3.setFont(new java.awt.Font("Microsoft Tai Le", 1, 14)); // NOI18N
+        jButton3.setText("Calendario");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 300, 40));
+
         j.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/giphy.gif"))); // NOI18N
-        getContentPane().add(j, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 280));
+        getContentPane().add(j, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 320));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -128,6 +138,12 @@ public class menu extends javax.swing.JFrame {
         }*/
     }//GEN-LAST:event_formWindowClosing
 
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        Calendario c= new Calendario();
+        c.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton3MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -165,6 +181,7 @@ public class menu extends javax.swing.JFrame {
     private javax.swing.JLabel j;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     // End of variables declaration//GEN-END:variables
 }

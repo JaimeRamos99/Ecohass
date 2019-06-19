@@ -41,6 +41,7 @@ public class Inicio extends javax.swing.JFrame {
         Icon im = new ImageIcon(icn.getImage().getScaledInstance(j.getWidth(), j.getHeight(), Image.SCALE_DEFAULT));
         j.setIcon(im);
         this.setExtendedState(MAXIMIZED_BOTH);
+        jButton1.setBounds(10, (int)(this.getHeight()*0.9),(int)(this.getWidth()*0.1) , (int)(this.getHeight()*0.1));
         /*j.setBounds(0, 0, screenSize.width, screenSize.height);
         ImageIcon icn = new ImageIcon(getClass().getResource("/imagenes/ff.jpeg"));
         Icon im = new ImageIcon(icn.getImage().getScaledInstance(j.getWidth(), j.getHeight(), Image.SCALE_DEFAULT));

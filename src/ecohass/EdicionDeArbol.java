@@ -64,19 +64,20 @@ public class EdicionDeArbol extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jInternalFrame1 = new javax.swing.JInternalFrame();
         j2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         zona = new javax.swing.JCheckBox();
         altura = new javax.swing.JCheckBox();
         ancho = new javax.swing.JCheckBox();
         edad = new javax.swing.JCheckBox();
+        salu = new javax.swing.JCheckBox();
+        jButton10 = new javax.swing.JButton();
         nivel = new javax.swing.JCheckBox();
         siembra = new javax.swing.JCheckBox();
         foto = new javax.swing.JCheckBox();
         total = new javax.swing.JCheckBox();
-        jLabel1 = new javax.swing.JLabel();
-        salu = new javax.swing.JCheckBox();
+        jButton1 = new javax.swing.JButton();
         j = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -88,21 +89,39 @@ public class EdicionDeArbol extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jInternalFrame1.setVisible(true);
+        jInternalFrame1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         j2.setFont(new java.awt.Font("Microsoft Tai Le", 1, 24)); // NOI18N
         j2.setForeground(new java.awt.Color(0, 0, 153));
         j2.setText("jLabel1");
         j2.setOpaque(true);
-        getContentPane().add(j2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 160, -1));
+        jInternalFrame1.getContentPane().add(j2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 160, -1));
 
-        jButton1.setFont(new java.awt.Font("Microsoft Tai Le", 1, 18)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/back.png"))); // NOI18N
-        jButton1.setText("Atrás");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Selecciona los campos a editar");
+        jLabel1.setOpaque(true);
+        jInternalFrame1.getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+
+        zona.setFont(new java.awt.Font("Microsoft Tai Le", 1, 18)); // NOI18N
+        zona.setText("Zona");
+        jInternalFrame1.getContentPane().add(zona, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
+
+        altura.setFont(new java.awt.Font("Microsoft Tai Le", 1, 18)); // NOI18N
+        altura.setText("Altura");
+        jInternalFrame1.getContentPane().add(altura, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
+
+        ancho.setFont(new java.awt.Font("Microsoft Tai Le", 1, 18)); // NOI18N
+        ancho.setText("Ancho");
+        jInternalFrame1.getContentPane().add(ancho, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
+
+        edad.setFont(new java.awt.Font("Microsoft Tai Le", 1, 18)); // NOI18N
+        edad.setText("Edad");
+        jInternalFrame1.getContentPane().add(edad, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
+
+        salu.setFont(new java.awt.Font("Microsoft Tai Le", 1, 18)); // NOI18N
+        salu.setText("salud");
+        jInternalFrame1.getContentPane().add(salu, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
 
         jButton10.setFont(new java.awt.Font("Microsoft Tai Le", 1, 18)); // NOI18N
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/checked.png"))); // NOI18N
@@ -112,48 +131,35 @@ public class EdicionDeArbol extends javax.swing.JFrame {
                 jButton10MouseClicked(evt);
             }
         });
-        getContentPane().add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, -1, -1));
-
-        zona.setFont(new java.awt.Font("Microsoft Tai Le", 1, 18)); // NOI18N
-        zona.setText("Zona");
-        getContentPane().add(zona, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, -1, -1));
-
-        altura.setFont(new java.awt.Font("Microsoft Tai Le", 1, 18)); // NOI18N
-        altura.setText("Altura");
-        getContentPane().add(altura, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, -1, -1));
-
-        ancho.setFont(new java.awt.Font("Microsoft Tai Le", 1, 18)); // NOI18N
-        ancho.setText("Ancho");
-        getContentPane().add(ancho, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, -1, -1));
-
-        edad.setFont(new java.awt.Font("Microsoft Tai Le", 1, 18)); // NOI18N
-        edad.setText("Edad");
-        getContentPane().add(edad, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, -1, -1));
+        jInternalFrame1.getContentPane().add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, -1, 30));
 
         nivel.setFont(new java.awt.Font("Microsoft Tai Le", 1, 18)); // NOI18N
         nivel.setText("Nivel de crecimiento");
-        getContentPane().add(nivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 140, -1, -1));
+        jInternalFrame1.getContentPane().add(nivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, -1, -1));
 
         siembra.setFont(new java.awt.Font("Microsoft Tai Le", 1, 18)); // NOI18N
         siembra.setText("Fecha de siembra");
-        getContentPane().add(siembra, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, -1, -1));
+        jInternalFrame1.getContentPane().add(siembra, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, -1, -1));
 
         foto.setFont(new java.awt.Font("Microsoft Tai Le", 1, 18)); // NOI18N
         foto.setText("Fecha de foto");
-        getContentPane().add(foto, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, -1, -1));
+        jInternalFrame1.getContentPane().add(foto, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, -1, -1));
 
         total.setFont(new java.awt.Font("Microsoft Tai Le", 1, 18)); // NOI18N
         total.setText("Total producido");
-        getContentPane().add(total, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 280, -1, -1));
+        jInternalFrame1.getContentPane().add(total, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Selecciona los campos a editar");
-        jLabel1.setOpaque(true);
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, -1, -1));
+        jButton1.setFont(new java.awt.Font("Microsoft Tai Le", 1, 18)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/back.png"))); // NOI18N
+        jButton1.setText("Atrás");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jInternalFrame1.getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, 30));
 
-        salu.setFont(new java.awt.Font("Microsoft Tai Le", 1, 18)); // NOI18N
-        salu.setText("salud");
-        getContentPane().add(salu, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 330, -1, -1));
+        getContentPane().add(jInternalFrame1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 420, 340));
 
         j.setFont(new java.awt.Font("Microsoft Tai Le", 1, 18)); // NOI18N
         j.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/otrofondo.jpeg"))); // NOI18N
@@ -382,6 +388,7 @@ public class EdicionDeArbol extends javax.swing.JFrame {
     private javax.swing.JLabel j2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JCheckBox nivel;
     private javax.swing.JCheckBox salu;
